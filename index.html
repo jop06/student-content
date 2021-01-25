@@ -1,0 +1,36 @@
+</html>
+
+<script>
+    var currentPage="about"
+    var lastPage="about"
+    var lang ="en";
+    if (typeof(Storage) !== "undefined") {
+    // Code for localStorage/sessionStorage.
+    lang = localStorage.getItem("language") || lang;
+    lastPage = localStorage.getItem("lastpage") || lastPage;
+    } else {
+        // Sorry! No Web Storage support..
+    }
+
+    var contentEN = {
+        "contact": "<p>+421 0915066622</p>" +
+            "<p>mail@enjoe.sk</p>",
+@@ -72,12 +80,15 @@
+        "sk": contentSK
+    }
+    function setContent(innerContent) {
+        currentPage = innerContent
+        lastPage = innerContent
+        localStorage.setItem("lastpage", lastPage)
+        document.getElementById("content").innerHTML = content[lang][innerContent];
+    }
+    function setLanguage(language){
+        lang = language
+        setContent(currentPage)
+        localStorage.setItem("language", language)
+        setContent(lastPage)
+    }
+    setContent('about');
+    setLanguage(lang);
+    setContent(lastPage);
+</script> 
